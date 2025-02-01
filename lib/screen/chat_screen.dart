@@ -9,9 +9,15 @@ class ChatScreen extends StatelessWidget {
         elevation: 1,
         centerTitle: true,
         title: Text(
+<<<<<<< HEAD
           'المحادثة',
           style: TextStyle(
             color: Colors.black,  
+=======
+          'الدردشة',
+          style: TextStyle(
+            color: Colors.black,
+>>>>>>> b5ad347
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

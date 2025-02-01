@@ -46,4 +46,12 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>نحتاج إلى موقعك لعرض الخرائط</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>نحتاج إلى موقعك لاستخدام الميزات القائمة على الموقع</string>
+<key>UIBackgroundModes</key>
+<array>
+  <string>location</string>
+</array>
 </plist>
