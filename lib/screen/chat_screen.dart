@@ -9,7 +9,7 @@ class ChatScreen extends StatelessWidget {
         elevation: 1,
         centerTitle: true,
         title: Text(
-          'الدردشة',
+          'المحادثة',
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,
