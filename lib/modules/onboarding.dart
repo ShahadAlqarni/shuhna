@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../SignUpScreen.dart';
-
+import '../colors.dart';
+import '../signup_screen.dart';
 
 class Onboarding extends StatelessWidget {
   @override
@@ -9,25 +9,23 @@ class Onboarding extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // الخلفية (صورة الشاحنة)
           Image.asset(
             'assets/images/truck.png',
             fit: BoxFit.cover,
           ),
 
-          // النصوص والزر
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Spacer(flex: 3), // يترك مسافة في الأعلى
+              Spacer(flex: 3), 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "جاهز لنقل حمولتك؟",
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.end,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
+                    color: AppColors.whiteColor,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -37,16 +35,16 @@ class Onboarding extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "احصل على أفضل خدمة لنقل سيارتك أو حمولتك في أي وقت وبأسرع طريقة ممكنة!",
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.end,
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+                    color: AppColors.whiteColor, 
+                    fontSize: 24,
                   ),
                 ),
               ),
-              Spacer(flex: 2), // يترك مسافة قبل الزر
+              Spacer(flex: 2),
 
-              // زر "ابدأ"
+           
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -54,29 +52,28 @@ class Onboarding extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // لون الزر
+                      backgroundColor: AppColors.primaryColor, 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                     onPressed: () {
-                      // تنفيذ عند الضغط على الزر
                       Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignUpScreen()));
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      );
                     },
                     child: Text(
                       "ابدأ",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.whiteColor, 
                         fontSize: 18,
                       ),
                     ),
                   ),
                 ),
               ),
-              Spacer(), // يترك مسافة في الأسفل
+              Spacer(),
             ],
           ),
         ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
+import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -22,13 +24,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Image.asset(
               'assets/images/logo.png',
               height: 80,
-              width: 200,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 16),
             Text(
-              'انشاء حساب',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              'إنشاء حساب',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             SizedBox(height: 16),
             // Toggle between "عميل" and "مالك شاحنة"
@@ -36,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -54,36 +58,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 12),
             _buildTextField(hintText: 'كلمة السر', icon: Icons.lock, obscureText: true),
             SizedBox(height: 16),
-            // "تذكرني" - Centered
-            Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Checkbox(
-                    value: rememberMe,
-                    onChanged: (value) {
-                      setState(() {
-                        rememberMe = value!;
-                      });
-                    },
-                    activeColor: Colors.blue, // Matches design color
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                  ),
-                  Text(
-                    'تذكرني',
-                    style: TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+            // "تذكرني"
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Checkbox(
+                  value: rememberMe,
+                  onChanged: (value) {
+                    setState(() {
+                      rememberMe = value!;
+                    });
+                  },
+                  activeColor: AppColors.primaryColor, 
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                ),
+                Text(
+                  'تذكرني',
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                ),
+              ],
             ),
             SizedBox(height: 10),
             // Sign Up Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                //opean next page
+                onPressed: () {
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: AppColors.primaryColor, 
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -96,10 +100,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             SizedBox(height: 20),
-            // "Or sign up using"
-            Text('او التسجيل عن طريق', style: TextStyle(fontSize: 14, color: Colors.grey)),
-            SizedBox(height: 12),
-            // Social Login Buttons (Google & Apple)
+            Text('أو التسجيل عن طريق', style: TextStyle(fontSize: 14, color: Colors.grey)),
+            SizedBox(height: 0),
+            // Social Login Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -108,14 +111,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 _buildSocialButton('assets/icons/apple.png'),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             // Login Link
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('هل تمتلك حساب؟ ', style: TextStyle(fontSize: 14)),
-                GestureDetector(
-                  onTap: () {},
+                   GestureDetector(
+                  onTap: () {
+                                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                       builder: (context) => LoginScreen()));
+                  },
                   child: Text(
                     'تسجيل الدخول',
                     style: TextStyle(
@@ -125,6 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
+                Text(' هل تمتلك حساب؟ ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ],
             ),
           ],
@@ -133,14 +141,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  // Custom Input Field with Right-Aligned Icons
   Widget _buildTextField({required String hintText, required IconData icon, bool obscureText = false}) {
     return TextField(
       obscureText: obscureText,
-      textAlign: TextAlign.right, // Align text to the right
+      textAlign: TextAlign.right,
       decoration: InputDecoration(
         hintText: hintText,
-        suffixIcon: Icon(icon, color: Colors.grey), // Move icon to the right
+        suffixIcon: Icon(icon, color: Colors.grey),
         filled: true,
         fillColor: Colors.grey[200],
         border: OutlineInputBorder(
@@ -151,7 +158,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  // Role Selection Button
   Widget _buildRoleButton(String title, int index) {
     return GestureDetector(
       onTap: () {
@@ -162,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: selectedRole == index ? Colors.blue : Colors.transparent,
+          color: selectedRole == index ?  AppColors.secondaryColor: Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -176,20 +182,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  // Social Login Button
   Widget _buildSocialButton(String assetPath) {
     return Container(
-      width: 50, // Ensures correct size
-      height: 50,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey, width: 1),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(10), // Adjusts padding for perfect centering
-        child: Image.asset(
-          assetPath,
-        ),
+      width: 70,
+      height: 80,
+      child: Image.asset(
+        assetPath,
+        fit: BoxFit.contain,
       ),
     );
   }
